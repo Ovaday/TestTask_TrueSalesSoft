@@ -1,0 +1,44 @@
+<template>
+    <lightning-card>
+        <c-products-cart show-modal={showModal}
+                         account-id={AccountId}
+                         account-name={AccountName}
+                         show-negative=false
+                         onclose={closeModal}
+                         products-in-cart={productsInCart}></c-products-cart>
+        <div class="slds-card__body_inner">
+            <template if:true={products.data}>
+                <lightning-input type="search"
+                                 onchange={handleSearchTermChange}
+                                 variant="label-hidden"
+                                 class="slds-var-m-bottom_small"
+                                 label="Search"
+                                 placeholder="Search for products"
+                                 value={searchTerm}>
+                </lightning-input>
+                <div if:true={filterFamily}>Filter selected: {filterFamily}</div>
+                <div if:true={filterType}>Filter selected: {filterType}</div>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={products.data} for:item="product">
+                        <lightning-layout-item key={product.Id} size="5"
+                                               class="slds-var-p-around_x-small slds-text-align_center">
+                            <c-product-tile product={product}
+                                            onproductview={handleProductView}
+                                            onaddedtocart={handleAddedToCart}></c-product-tile>
+                        </lightning-layout-item>
+                    </template>
+                    <template if:false={hasResults}>
+                        <div class="slds-align_absolute-center slds-var-m-vertical_small">
+                            The search has no results. Please, try other search phrase.
+                        </div>
+                    </template>
+                </lightning-layout>
+            </template>
+            <template if:true={products.error}>
+                <div class="slds-text-color_error">
+                    An error occurred while loading the product list
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

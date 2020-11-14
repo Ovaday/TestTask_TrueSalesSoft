@@ -1,0 +1,70 @@
+<template>
+    <lightning-card>
+        <div class="slds-box">
+            <div class="slds-page-header" role="banner">
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-m-around_medium">
+                        <div class="slds-grid slds-gutters" if:true={accountName}>
+                            <div class="slds-col slds-size_1-of-4">
+                            <span>
+                                <p class="slds-text-heading_large slds-text-align_center">{accountName}</p>
+                            </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4">
+                            <span>
+                                <p class="slds-text-heading_large slds-text-align_center">{accountNumber}</p>
+                            </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4">
+                            <span>
+                            </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-8">
+                            <span>
+                                <div if:true={objUser.IsManager}>
+                                    <a class="slds-button slds-float_right slds-button_neutral"
+                                       href="/lightning/o/Product__c/new?&useRecordTypeCheck=1&navigationLocation=MRU_LIST&backgroundContext=%2Flightning%2Fo%2FProduct__c%2Flist%3FfilterName%3DRecent">Create Product</a>
+                                </div>
+                            </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-12">
+                            <span>
+                                <lightning-button class="slds-p-right--small"
+                                                  label="Cart"
+                                                  onclick={handleCartClick}></lightning-button>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters" if:false={accountName}>
+                            <p class="slds-text-heading_large slds-text-align_center slds-text-color_error">No Account Referred. Please, update the page or try to open the page from the account again.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-4">
+            <span>
+                <div class="slds-box">
+                    <div class="slds-text-align_center slds-text-heading_small" title="Filter">Filter</div>
+                    <c-filter-box ontypechange={handleChangeType}
+                                  onfamilychange={handleChangeFamily}
+                                  onfilterreset={handleResetClick}></c-filter-box>
+                </div>
+            </span>
+            </div>
+            <div class="slds-col slds-size_3-of-4">
+            <span>
+                <div class="slds-box">
+                    <c-products-list show-modal={showModal}
+                                     search-term={searchTerm}
+                                     filter-type={filterType}
+                                     filter-family={filterFamily}></c-products-list>
+                </div>
+            </span>
+            </div>
+        </div>
+        <br/>
+    </lightning-card>
+</template>

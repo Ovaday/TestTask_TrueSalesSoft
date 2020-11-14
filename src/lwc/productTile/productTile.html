@@ -1,0 +1,33 @@
+<template>
+    <lightning-card class="product-tile">
+        <div slot="actions">
+        </div>
+        <div class="slds-var-p-horizontal_small product-tile-body">
+            <p class="slds-text-heading_large slds-text-align_center">{product.Name}</p>
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <br/>
+                    <p class="slds-var-m-bottom_xx-small">{product.Description__c}</p>
+                </div>
+                <br/>
+            </div>
+            <footer class="slds-card__footer">
+                <lightning-button
+                        label="Details"
+                        title="Details"
+                        onclick={handleOpenRecordClick}
+                        alternative-text="Open record"
+                        class="slds-m-left_x-small">
+                </lightning-button>
+                <lightning-button
+                        label="Add"
+                        title="Add"
+                        name={product.Id}
+                        onclick={handleAddToCart}
+                        alternative-text="Add to cart"
+                        class="slds-m-left_x-small">
+                </lightning-button>
+            </footer>
+        </div>
+    </lightning-card>
+</template>

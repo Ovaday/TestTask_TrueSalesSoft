@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Type:">
+        <template if:true={TypePicklistValues.data}>
+            <lightning-radio-group name="radioGroupType"
+                                   options={TypePicklistValues.data.values}
+                                   value={TypeValue}
+                                   type="radio"
+                                   onchange={handleChangeType}></lightning-radio-group>
+        </template>
+        <br/>
+    </lightning-card>
+    <lightning-card title="Family:">
+        <template if:true={FamilyPicklistValues.data}>
+            <lightning-radio-group name="radioGroupFamily"
+                                   options={FamilyPicklistValues.data.values}
+                                   value={FamilyValue}
+                                   type="radio"
+                                   onchange={handleChangeFamily}></lightning-radio-group>
+
+        </template>
+
+        <br/>
+    </lightning-card>
+    <lightning-button label="Reset filters" onclick={handleResetClick}></lightning-button>
+</template>
